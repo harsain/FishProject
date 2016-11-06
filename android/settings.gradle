@@ -1,0 +1,3 @@
+rootProject.name = 'FishProject'
+
+include ':app'
