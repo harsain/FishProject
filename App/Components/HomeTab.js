@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import {
     View,
-    Text,    
+    Text,
     Navigator,
     StatusBar,
     TouchableHighlight,
@@ -41,81 +41,35 @@ class HomeTab extends Component {
         {title: '30 Day View', index: 0},
         {title: 'Month', index: 1},
       ];
-      return (
-        <View>
-          <StatusBar
-            backgroundColor={this.state.backgroundColor}
-            animated={this.state.animated}
-          />
-          <TouchableHighlight
-            style={styles.wrapper}
-            onPress={this._onChangeBackgroundColor}>
-            <View style={styles.button}>
-              <Text>backgroundColor: '{getValue(colors, this._colorIndex)}'</Text>
-            </View>
-          </TouchableHighlight>
 
+        return (
 
-          <Navigator
+            <Navigator
             initialRoute={routes[0]}
             initialRouteStack={routes}
-            renderScene={(route, navigator) => 
-            <View>
-              <StatusBar hidden={route.statusBarHidden} />
-              <MonthlyScene
-                title= {routes[route.index].title}
+            renderScene={(route, navigator) =>
+              <View>
 
-                onForward={ () => {
-                  const nxtId = route.index + 1;
-                  navigator.push(routes[nxtId]);
-                }}
+                <MonthlyScene
+                  title= {routes[route.index].title}
 
-                onBack={ () => {
-                  if (route.index > 0) {
-                    navigator.pop();
-                  }
-                }}
-              >
-              </MonthlyScene>
-            </View>
-          }
-          >
-          </Navigator>
-        </View>
-      )
-        // return (
-        //   <View style={styles.container}>
-        //     <StatusBar
-        //        backgroundColor="blue"
-        //        barStyle="light-content"
-        //      />
-        //     <Navigator
-        //     initialRoute={routes[0]}
-        //     initialRouteStack={routes}
-        //     renderScene={(route, navigator) => 
-        //       <View>
-        //         <StatusBar hidden={route.statusBarHidden} />
-        //         <MonthlyScene
-        //           title= {routes[route.index].title}
+                  onForward={ () => {
+                    const nxtId = route.index + 1;
+                    navigator.push(routes[nxtId]);
+                  }}
 
-        //           onForward={ () => {
-        //             const nxtId = route.index + 1;
-        //             navigator.push(routes[nxtId]);
-        //           }}
-
-        //           onBack={ () => {
-        //             if (route.index > 0) {
-        //               navigator.pop();
-        //             }
-        //           }}
-        //         >
-        //         </MonthlyScene>
-        //       </View>
-        //     }
-        //     >
-        //     </Navigator>
-        //   </View>      
-        // )
+                  onBack={ () => {
+                    if (route.index > 0) {
+                      navigator.pop();
+                    }
+                  }}
+                >
+                </MonthlyScene>
+              </View>
+            }
+            >
+            </Navigator>
+        )
       }
 };
 
@@ -128,7 +82,7 @@ class MonthlyScene extends Component {
 
   render() {
     return (
-      <View>    
+      <View>
         <Text>Current Scene: {this.props.title}</Text>
         <TouchableHighlight onPress={this.props.onForward}>
           <Text>Tap me to load the next scene</Text>
