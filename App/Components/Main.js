@@ -17,9 +17,16 @@ import {
     Icon,
     Button
 } from 'native-base';
-
 import Calendar from 'react-native-calendar';
 
+const chartData = [[
+    [0, 1],
+    [1, 3],
+    [3, 7],
+    [4, 9],
+]];
+
+const xLabels = ['0','1','2','3','4','5','6','7','8','9','10','11'];
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -50,6 +57,8 @@ class Main extends Component {
                     </View>
 
                     <Button small bordered info onPress={this.next.bind(this)}> Test </Button>
+    
+                
                 </Content>
             </Container>
         )
@@ -82,6 +91,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'stretch'
     },
+    chart: {
+         width: 200,
+        height: 200,
+    }
 });
 
 module.exports = Main;
