@@ -13,8 +13,9 @@ class Main extends Component {
           <View style={styles.container}>
 
           <Calendar
-          ref="calendar"
-          weekStart={0}
+            ref="calendar"
+            weekStart={0}
+            style={styles.calendar}
           />
 
           <Text>Test the Router</Text>
@@ -24,22 +25,19 @@ class Main extends Component {
   };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 100,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        marginTop: 65,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'stretch'
+    },
+    calendar: {
+        margin: 10,
+        flex: 1,
+        padding: 10,
+        flexDirection: 'row',
+        alignSelf: 'stretch'
+    },
 });
 
 module.exports = Main;

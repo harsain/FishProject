@@ -1,96 +1,86 @@
 import React, { Component, PropTypes } from 'react';
 
 import {
-    View,
-    Text,
-    Navigator,
-    StatusBar,
-    TouchableHighlight,
-    StyleSheet
+  View,
+  Text,
+  NavigatorIOS,
+  StatusBar,
+  TouchableHighlight,
+  StyleSheet
 } from 'react-native';
+import { 
+    Container,
+    Content,
+    Title,
+    Card,
+    CardItem,
+    CheckBox,
+    Icon
+} from 'native-base';
 import Calendar from 'react-native-calendar';
-const colors = [
-    '#ff0000',
-    '#003388',
-    '#0000ff',
-  ];
+import MainHomeTab from './Main';
 
-  function getValue<T>(values: Array<T>, index: number): T {
-  return values[index % values.length];
-}
 class HomeTab extends Component {
 
-  state = {
-    animated: true,
-    backgroundColor: getValue(colors, 0),
-  };
+  render(){
+    const routes = [
+        {title: 'Perdiction', component: MainHomeTab},
+        {title: 'Month', component: MonthlyScene2},
+    ];
 
-  _colorIndex = 0;
+    return (
 
-  _onChangeBackgroundColor = () => {
-    this._colorIndex++;
-    this.setState({backgroundColor: getValue(colors, this._colorIndex)});
-  };
-
-  _onChangeAnimated = () => {
-    this.setState({animated: !this.state.animated});
-  };
-    render(){
-
-      const routes = [
-        {title: '30 Day View', index: 0},
-        {title: 'Month', index: 1},
-      ];
-
-        return (
-
-            <Navigator
+        <NavigatorIOS
             initialRoute={routes[0]}
-            initialRouteStack={routes}
-            renderScene={(route, navigator) =>
-              <View>
-
-                <MonthlyScene
-                  title= {routes[route.index].title}
-
-                  onForward={ () => {
-                    const nxtId = route.index + 1;
-                    navigator.push(routes[nxtId]);
-                  }}
-
-                  onBack={ () => {
-                    if (route.index > 0) {
-                      navigator.pop();
-                    }
-                  }}
-                >
-                </MonthlyScene>
-              </View>
-            }
-            >
-            </Navigator>
-        )
-      }
+            style={{flex: 1}}
+        />
+    )
+  }
 };
 
 class MonthlyScene extends Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    onForward: PropTypes.func.isRequired,
-    onBack: PropTypes.func.isRequired
-  }
+    constructor(props) {
+        super(props);
+        console.log(this.props);
+    }
+
+  // render() {
+  //   return (
+  //     <View style={styles.tabContainer}>
+  //         <Text>Current Scene: {this.props.route.title}</Text>
+  //         <TouchableHighlight onPress={this._onForward}>
+  //           <Text>Tap me to load the next scene</Text>
+  //         </TouchableHighlight>
+  //         <TouchableHighlight onPress={this._onBack}>
+  //           <Text>Tap me to go back</Text>
+  //         </TouchableHighlight>
+  //     </View>
+  //     )
+  // }
 
   render() {
     return (
-      <View>
-        <Text>Current Scene: {this.props.title}</Text>
-        <TouchableHighlight onPress={this.props.onForward}>
-          <Text>Tap me to load the next scene</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.props.onBack}>
-          <Text>Tap me to go back</Text>
-        </TouchableHighlight>
-      </View>
+        <Container style={styles.tabContainer}>
+            <Content>
+                <CheckBox />
+                <Text>Test</Text>
+                    <Card>
+                        <CardItem header>                        
+                            <Text>Card Header</Text>
+                        </CardItem>
+
+                        <CardItem>                        
+                            <Text>
+                                //Your text here
+                            </Text>
+                        </CardItem>
+
+                        <CardItem header>                        
+                            <Text>Card Footer</Text>
+                        </CardItem>
+                   </Card>
+            </Content>
+        </Container>
     )
   }
 };
@@ -105,35 +95,41 @@ class MonthlyScene2 extends Component {
   render() {
     return (
       <View>
-        <Text>Current Scene</Text>
-        <TouchableHighlight onPress={this.props.onForward}>
-          <Text>Tap me to load the next scene</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.props.onBack}>
-          <Text>Tap me to go back</Text>
-        </TouchableHighlight>
+      <Text>Current Scene</Text>
+      <TouchableHighlight onPress={this.props.onForward}>
+      <Text>Tap me to load the next scene</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={this.props.onBack}>
+      <Text>Tap me to go back</Text>
+      </TouchableHighlight>
       </View>
-    )
+      )
   }
 };
 
 const styles = StyleSheet.create({
-   wrapper: {
-    borderRadius: 5,
-    marginBottom: 5,
-  },
-  button: {
-    borderRadius: 5,
-    backgroundColor: '#eeeeee',
-    padding: 10,
-  },
-  title: {
-    marginTop: 16,
-    marginBottom: 8,
-    fontWeight: 'bold',
-  },
-  container: {
+ wrapper: {
+  borderRadius: 5,
+  marginBottom: 5,
+},
+button: {
+  borderRadius: 5,
+  backgroundColor: '#eeeeee',
+  padding: 10,
+},
+title: {
+  marginTop: 16,
+  marginBottom: 8,
+  fontWeight: 'bold',
+},
+tabContainer: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+container: {
+  flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#F5FCFF',

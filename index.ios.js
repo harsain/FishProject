@@ -13,6 +13,7 @@ import {
   NavigatorIOS,
   TabBarIOS
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeTab from './App/Components/HomeTab';
 
@@ -27,42 +28,39 @@ export default class FishProject extends Component {
   }
 
   render() {
-    // return (
-    //   <NavigatorIOS
-    //     initialRoute={{
-    //       component: Main,
-    //       title: "Fish Tracker"
-    //     }}
-    //     style={{flex: 1}}
-    //   />
-    // );
      
     return (
       <TabBarIOS>
-        <TabBarIOS.Item
-          systemIcon="bookmarks"
+        <Icon.TabBarItem
+          iconName='ios-home-outline'
+          selectedIconName='ios-home'
+          title='Home'
           selected={this.state.selectedTab==='homeTab'}
           onPress={() => this.setTab('homeTab')}>
           <HomeTab/>
-        </TabBarIOS.Item>
+        </Icon.TabBarItem>
         
-        <TabBarIOS.Item
-          systemIcon="featured"
+        <Icon.TabBarItem
+          iconName='ios-play-outline'
+          selectedIconName='ios-play'
+          title='Live'
           selected={this.state.selectedTab==='liveTab'}
           onPress={() => this.setTab('liveTab')}>
           <View style={styles.container}>
             <Text>Live Tab</Text>
           </View>
-        </TabBarIOS.Item>
+        </Icon.TabBarItem>
 
-        <TabBarIOS.Item
-          systemIcon="more"
+        <Icon.TabBarItem
+          iconName='ios-settings-outline'
+          selectedIconName='ios-settings'
+          title='Settings'
           selected={this.state.selectedTab==='moreTab'}
           onPress={() => this.setTab('moreTab')}>
           <View style={styles.container}>
             <Text>More Tab</Text>
           </View>
-        </TabBarIOS.Item>
+        </Icon.TabBarItem>
       </TabBarIOS>
     );
   }
