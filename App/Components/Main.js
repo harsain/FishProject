@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-import { 
+import {
     Container,
     Content,
     Title,
@@ -18,33 +18,20 @@ import {
     Button
 } from 'native-base';
 import Calendar from 'react-native-calendar';
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory-native";
 
-const chartData = [[
-    [0, 1],
-    [1, 3],
-    [3, 7],
-    [4, 9],
-]];
-
-const xLabels = ['0','1','2','3','4','5','6','7','8','9','10','11'];
 class Main extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
     }
     next() {
-        // this.props.navigator.push({
-        //     title: 'test',
-        //     component: Next
-        // });
         this.props.navigator.push({
             title: 'Test',
             component: Next
         });
     }
-
+// <Button small bordered info onPress={this.next.bind(this)}> Test </Button>
     render(){
-        
         return (
             <Container style={styles.container}>
                 <Content>
@@ -56,9 +43,18 @@ class Main extends Component {
                         />
                     </View>
 
-                    <Button small bordered info onPress={this.next.bind(this)}> Test </Button>
-    
-                
+                    <VictoryChart theme={VictoryTheme.grayscale}>
+                    <VictoryLine
+                      data={[
+                        {month: "September", profit: 35000, loss: 2000},
+                        {month: "October", profit: 42000, loss: 8000},
+                        {month: "November", profit: 55000, loss: 5000}
+                      ]}
+                      x="month"
+                      y={(datum) => datum.profit - datum.loss}
+                      interpolation="monotoneX"
+                    />
+                    </VictoryChart>
                 </Content>
             </Container>
         )
@@ -91,8 +87,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'stretch'
     },
+    chartContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
     chart: {
-         width: 200,
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'stretch',
+        width: 200,
         height: 200,
     }
 });
